@@ -85,7 +85,12 @@ Player.prototype.handleInput = function(keycode) {
 
     // Remove all enemies if the player makes it accross
     if (this.y == 0) {
-        allEnemies = [];
+        allEnemies[0] = new Enemy(400, 140);
+        allEnemies[1] = new Enemy(200, 60);
+        allEnemies[2] = new Enemy(0, 225);
+        var winner = new WinnerSign();
+
+        winner.render();
     }
 
 };
@@ -103,6 +108,18 @@ Player.prototype.checkCollision = function() {
         }
     }
     return false;
+}
+
+var WinnerSign =  function() {
+    Enemy.call(this);
+    this.sprite = 'images/won.jpg';
+}
+
+WinnerSign.prototype = Object.create(Enemy.prototype);
+WinnerSign.prototype.constructor = WinnerSign;
+WinnerSign.prototype.render = function() {
+     console.log(this);
+     ctx.drawImage(Resources.get(this.sprite), ctx.canvas.width / 2, ctx.canvas.height / 2);
 }
 
 // Now instantiate your objects.
@@ -128,3 +145,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
