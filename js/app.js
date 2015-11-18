@@ -25,7 +25,7 @@ Sprite.prototype.collisionDetection = function(sprite ) {
     } else {
         return false;
     }
-}
+};
 
 Sprite.prototype.update = function() {
     
@@ -38,7 +38,8 @@ var Enemy = function(x,y) {
     this.sprite = 'images/enemy-bug.png';
     // Randomly generated speed for the enemy
     this.speed = Math.floor((Math.random() * 300) + 75);
-}
+};
+
 Enemy.prototype = Object.create(Sprite.prototype);
 Enemy.constructor = Enemy;
 // Update the enemy's position, required method for game
@@ -58,7 +59,8 @@ Enemy.generateEnemies = function() {
     enemies[1] = new Enemy(((Math.random() * 275) + 25), 60);
     enemies[2] = new Enemy(((Math.random() * 275) + 25), 225);
     return enemies;
-}
+};
+
 // Player function to keep track of our hero
 var Player = function(x, y) {
     Sprite.call(this, x, y);
@@ -132,7 +134,7 @@ Player.prototype.checkCollision = function() {
    for (var i = 0; i < allPowerUps.length; i++) {
         if (this.collisionDetection( allPowerUps[i] )) {
             // If the player collided with the powerups, add 100 to score and remove powerup
-            allPowerUps.splice(allPowerUps[i],1);
+            allPowerUps.splice(i,1);
             score.score += 100;
         }
     };
@@ -145,7 +147,7 @@ var PowerUps = function() {
     
     //Set the image
     this.sprite = "images/star.png";
-}
+};
 
 PowerUps.prototype = Object.create(Sprite.prototype);
 PowerUps.prototype.constructor = PowerUps;
@@ -156,13 +158,13 @@ PowerUps.generatePowerups = function() {
        
     }
     return powerups;
-}
+};
 
 var Score = function() {
     // create a sprite for the bottom
     Sprite.call(this, 450, 450);
     this.score = 0;
-}
+};
 
 Score.prototype = Object.create(Sprite.prototype);
 Score.prototype.constructor = Score;
@@ -171,7 +173,7 @@ Score.prototype.render = function() {
     ctx.fillStyle = "white";
     ctx.textAlign = "right";
     ctx.fillText("Score: " + this.score, this.x, this.y);
-}
+};
 
 // Generate all enemies
 var allEnemies = Enemy.generateEnemies();
