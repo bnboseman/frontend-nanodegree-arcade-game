@@ -152,7 +152,12 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        allPowerUps.forEach(function(powerup) {
+            powerup.render();
+        });
         player.render();
+        score.render();
+        
     }
 
     /* This function does nothing but it could have been a good place to
@@ -168,6 +173,7 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
+        'images/star.png',
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
@@ -177,7 +183,7 @@ var Engine = (function(global) {
         'images/char-pink-girl.png',
         'images/char-princess-girl.png',
         'images/char-boy.png',
-        'images/won.jpg'
+
         
     ]);
     Resources.onReady(init);
