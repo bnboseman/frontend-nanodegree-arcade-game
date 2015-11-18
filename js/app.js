@@ -47,7 +47,7 @@ Enemy.prototype.update = function(dt) {
     // speed multiplied by dt parameter so game runs smoothly on all computers
     this.x += (this.speed * dt)
     if (this.x > 500) {
-        this.x = 0
+        this.x = 0;
         this.speed = Math.floor((Math.random() * 175) + 50);
     }
 };
@@ -109,7 +109,7 @@ Player.prototype.handleInput = function(keycode) {
     }
 
     // Reset the game
-    if (this.y == 0) {
+    if (this.y === 0) {
         allEnemies = Enemy.generateEnemies();
         allPowerUps = PowerUps.generatePowerups();
         this.x = 250;
@@ -120,20 +120,24 @@ Player.prototype.handleInput = function(keycode) {
 
 // Function to see if the player collided with any of the enemies.
 Player.prototype.checkCollision = function() {
-    for (enemy in allEnemies) {
-        if (this.collisionDetection( allEnemies[enemy])) {
+    for (var i = 0; i < allEnemies.length; i++) {
+        if (this.collisionDetection(allEnemies[i])) {
+            // If player collided with enemies, set them back to the start and drop score by 50 points
             this.y = 425;
+            score.score -= 50;
+            return true;
         }
-    }
+    };
     
-    for (powerup in allPowerUps) {
-        if (this.collisionDetection( allPowerUps[powerup])) {
-            allPowerUps.splice(powerup,1);
+   for (var i = 0; i < allPowerUps.length; i++) {
+        if (this.collisionDetection( allPowerUps[i] )) {
+            // If the player collided with the powerups, add 100 to score and remove powerup
+            allPowerUps.splice(allPowerUps[i],1);
             score.score += 100;
         }
-    }
+    };
     return false;
-}
+};
 
 var PowerUps = function() {
     // Create a sprite with a randomly placed location
