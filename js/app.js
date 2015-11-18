@@ -46,7 +46,7 @@ Enemy.constructor = Enemy;
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // speed multiplied by dt parameter so game runs smoothly on all computers
-    this.x += (this.speed * dt)
+    this.x += (this.speed * dt);
     if (this.x > 500) {
         this.x = 0;
         this.speed = Math.floor((Math.random() * 175) + 50);
@@ -129,15 +129,15 @@ Player.prototype.checkCollision = function() {
             score.score -= 50;
             return true;
         }
-    };
+    }
     
-   for (var i = 0; i < allPowerUps.length; i++) {
+   for (i = 0; i < allPowerUps.length; i++) {
         if (this.collisionDetection( allPowerUps[i] )) {
             // If the player collided with the powerups, add 100 to score and remove powerup
             allPowerUps.splice(i,1);
             score.score += 100;
         }
-    };
+    }
     return false;
 };
 
