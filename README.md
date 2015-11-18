@@ -1,6 +1,8 @@
-frontend-nanodegree-arcade-game
-===============================
+Welcome to Frogger.
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+Avoid running into the bugs in the game. The goal is to get accross the pond. Once you reach the other bank, the bugs will go away.
+To play, use Up, Down, Left or Right to control the character.
 
-for self-checking their submission.
+If you are hit, you will start from the beginning of the screen.
+
+If you are a fan of konami there might be a cheat for you.
