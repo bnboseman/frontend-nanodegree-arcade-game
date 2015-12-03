@@ -12,6 +12,7 @@ var Sprite = function(x, y) {
 
 // Draw the sprite on the screen, required method for game
 Sprite.prototype.render = function() {
+   console.log(this.sprite);
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -146,7 +147,7 @@ var PowerUps = function() {
     Sprite.call(this, Math.floor((Math.random() * 275) + 25), Math.floor((Math.random() * 275) + 25));
     
     //Set the image
-    this.sprite = "images/star.png";
+    this.sprite = "images/Star.png";
 };
 
 PowerUps.prototype = Object.create(Sprite.prototype);
