@@ -1,4 +1,4 @@
-var konamicode = ["up", "up", "down", "down", "left", "right", "left", "right", "B", "A"];
+var konamicode = ["up", "up", "down", "down", "left", "right", "left", "right", "B", "left"];
 var keys = [];
 // Base class for different pieces of the game
 var Sprite = function(x, y) {    
@@ -12,7 +12,6 @@ var Sprite = function(x, y) {
 
 // Draw the sprite on the screen, required method for game
 Sprite.prototype.render = function() {
-   console.log(this.sprite);
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -79,12 +78,18 @@ Player.prototype.update = function() {
 
 Player.prototype.handleInput = function(keycode) {
     // check to see if we have the konami code (instant win)
+     if ( konamicode.toString().substring(0, keys.toString().length) !== keys.toString() ) {
+         keys = [];
+     }
+
     keys.push(keycode);
     if (keys.toString().indexOf(konamicode) >= 0) {
         this.x = 250;
         this.y = 0;
+	score.score += 500;
         keys = [];
     } else {
+       console.log(keys.toString(), konamicode);
         //move the characters based on input character
         switch (keycode) {
             case "left":
@@ -190,14 +195,12 @@ var player = new Player(250, 425);
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down',
+        65: 'left',
+        87: 'up',
+        68: 'right',
+        83: 'down',
         66: 'B',
-        65: 'A'
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
